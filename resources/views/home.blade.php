@@ -8,7 +8,7 @@
 				<div class="card-header">Welcome to the to-do list manager</div>
 
 				<div class="card-body">
-					@if (session('status'))
+					@auth
 						<div class="alert alert-success" role="alert">
 							{{ session('status') }}
 							{{ __('You are logged in!') }}
@@ -18,7 +18,7 @@
 						<div>
 							<p>please login to make and see your own to-do lists</p>
 						</div>	
-					@endif
+					@endauth
 				</div>
 			</div>
 		</div>
