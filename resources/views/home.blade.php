@@ -2,22 +2,26 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header">Welcome to the to-do list manager</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
+				<div class="card-body">
+					@if (session('status'))
+						<div class="alert alert-success" role="alert">
+							{{ session('status') }}
+							{{ __('You are logged in!') }}
+							<p>now you can make your own to-do lists and look at the ones you already made</p>
+						</div>
+					@else
+						<div>
+							<p>please login to make and see your own to-do lists</p>
+						</div>	
+					@endif
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection
