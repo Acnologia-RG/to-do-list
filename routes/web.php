@@ -19,5 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 
+Route::get('/newList', 'ToDoListController@newList')->middleware('auth');
+
+Route::any('/', function () {
+    //
+});
+
+Route::resource('/list', 'ToDoListController')->except('show');
