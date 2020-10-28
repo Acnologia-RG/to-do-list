@@ -23,8 +23,4 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/newList', 'ToDoListController@newList')->middleware('auth');
 
-Route::any('/', function () {
-    //
-});
-
-Route::resource('/list', 'ToDoListController')->except('show');
+//Route::resource('/list', 'ToDoListController')->except('show');
