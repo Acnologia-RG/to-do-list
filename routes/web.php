@@ -23,4 +23,6 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/newList', 'ToDoListController@newList')->middleware('auth');
 
+Route::post('/createNewList', 'ToDoListController@createNewList')->middleware('auth');
+
 //Route::resource('/list', 'ToDoListController')->except('show');

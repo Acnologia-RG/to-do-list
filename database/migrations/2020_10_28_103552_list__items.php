@@ -16,7 +16,8 @@ class ListItems extends Migration
 		Schema::create('List_items', function (Blueprint $table) {
 			$table->id();
 			$table->string('name');
-			$table->text('description');
+			$table->text('description')->nullable($value = true);
+			$table->tinyInteger('status')->default(0);
 			$table->foreign('List_id')->references('id')->on('Lists');
 			$table->timestampsTz()->useCurrent();
 		});
