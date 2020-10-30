@@ -25,4 +25,6 @@ Route::get('/newList', 'ToDoListController@newList')->middleware('auth');
 
 Route::post('/createNewList', 'ToDoListController@createNewList')->middleware('auth');
 
+Route::post('/yourLists', 'ToDoListController@index')->middleware('auth');
+
 //Route::resource('/list', 'ToDoListController')->except('show');

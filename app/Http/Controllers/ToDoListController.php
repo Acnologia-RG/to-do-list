@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ToDoList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ToDoListController extends Controller
 {
@@ -14,7 +15,11 @@ class ToDoListController extends Controller
 	 */
 	public function index()
 	{
-		
+		$Lists = Lists::where('Lists.user_id', Auth::user()->id)
+        ->join('categories', 'category_id', '=','categories.id')
+        ->select('articles.id','name', 'price', 'description', 'category_name')
+        ->first();
+		return view('yourLists', compact('Lists'));
 	}
 
 	/**
@@ -39,6 +44,7 @@ class ToDoListController extends Controller
 		DB::table('Lists')->insertOrIgnore([
 			"name" => $request->listName
 		]);
+		return redirect(url('/yourLists'));
 	}
 
 	/**
