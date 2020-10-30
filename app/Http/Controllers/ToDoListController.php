@@ -35,7 +35,10 @@ class ToDoListController extends Controller
 	 */
 	public function createNewList(Request $request)
 	{
-		//
+		//dd($request->listName);
+		DB::table('Lists')->insertOrIgnore([
+			"name" => $request->listName
+		]);
 	}
 
 	/**

@@ -17,7 +17,7 @@ class Lists extends Migration
 			$table->id();
 			$table->string('name');
 			$table->foreignId('user_id');
-			$table->timestampsTz()->useCurrent();
+			$table->timestampsTz();
 		});
 	}
 
