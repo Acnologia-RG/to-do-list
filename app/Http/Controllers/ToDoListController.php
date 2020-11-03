@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ToDoList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ToDoListController extends Controller
@@ -15,11 +16,9 @@ class ToDoListController extends Controller
 	 */
 	public function index()
 	{
-		$Lists = Lists::where('Lists.user_id', Auth::user()->id)
-        ->join('categories', 'category_id', '=','categories.id')
-        ->select('articles.id','name', 'price', 'description', 'category_name')
-        ->first();
-		return view('yourLists', compact('Lists'));
+		$lists = DB::table('lists')->where('user_id', Auth::user()->id)
+        ->get();
+		return view('yourLists', compact('lists'));
 	}
 
 	/**
@@ -41,10 +40,48 @@ class ToDoListController extends Controller
 	public function createNewList(Request $request)
 	{
 		//dd($request->listName);
-		DB::table('Lists')->insertOrIgnore([
-			"name" => $request->listName
+		DB::table('lists')->insertOrIgnore([
+			"name" => $request->listName,
+			"user_id" => Auth::user()->id
 		]);
 		return redirect(url('/yourLists'));
+	}
+
+	/**
+	 * Show the form for creating a new List.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function newListItem($id)
+	{
+		return view('newListItem', compact($id));
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function createNewListItem(Request $request)
+	{
+		$user = Auth::user()->id;
+		$list = Lists::find($request->$id);
+
+		if ($list == null || $user == null) {
+			return redirect(url('/yourLists'));
+
+		} elseif ($user == $list->user_id) {
+			DB::table('list_items')->insertOrIgnore([
+				"name" => $request->listItemName,
+				"description" => $request->description,
+				"List_id" => $request->$id
+			]);
+			return redirect(url('/yourLists'));
+
+		} else {
+			return redirect(url('/yourLists'));
+		}
 	}
 
 	/**
