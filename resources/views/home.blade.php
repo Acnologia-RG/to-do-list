@@ -13,7 +13,9 @@
 							{{ session('status') }}
 							{{ __('You are logged in!') }}
 							<p>now you can make your own to-do lists and look at the ones you already made</p>
-							<a class="nav-link" href="{{ url('/newList') }}">make a new list</a>
+							<p><a class="nav-link" href="{{ url('/newList') }}">make a new list</a>
+							or <br>
+							<a href="{{ url('/yourLists') }}">look at your already made lists</a></p>
 						</div>
 					@else
 						<div>

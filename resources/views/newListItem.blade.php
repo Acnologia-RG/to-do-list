@@ -9,11 +9,11 @@
 			<form action="{{url('/createNewListItem')}}" method='POST'>
 			@csrf
 			@method('POST')
-				<h5>List name</h5>
-				<input class="text" type="text" name="listName">
-				<h5>description</h5>
+				<h4>List name</h4>
+				<input class="text" type="text" required name="listItemName"><br><br>
+				<h4>description</h4>
 				<input class="text" type="text" name="description">
-				<input type="hidden" type="number" name="List_id" value="{{$id}}">
+				<input type="hidden" type="number" name="List_id" value="{{$id}}"><br><br>
 				<input class="btn btn-secondary" type="submit" value="make new list item">
 			</div>
 		@else

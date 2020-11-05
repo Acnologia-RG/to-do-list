@@ -54,7 +54,7 @@ class ToDoListController extends Controller
 	 */
 	public function newListItem($id)
 	{
-		return view('newListItem', compact($id));
+		return view('newListItem', compact("id"));
 	}
 
 	/**
