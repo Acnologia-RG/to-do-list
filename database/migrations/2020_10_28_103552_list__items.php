@@ -19,6 +19,7 @@ class ListItems extends Migration
 			$table->text('description')->nullable($value = true);
 			$table->tinyInteger('status')->default(0);
 			$table->unsignedBigInteger('List_id');
+			$table->foreignId('user_id')->references('id')->on('users');
 			$table->foreign('List_id')->references('id')->on('Lists');
 			$table->timestampsTz();
 		});

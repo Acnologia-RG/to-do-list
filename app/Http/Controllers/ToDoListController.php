@@ -17,8 +17,10 @@ class ToDoListController extends Controller
 	public function index()
 	{
 		$lists = DB::table('lists')->where('user_id', Auth::user()->id)
-        ->get();
-		return view('yourLists', compact('lists'));
+		->get();
+		$listItems = DB::table('list_items')->where('user_id', Auth::user()->id)
+		->get();
+		return view('yourLists', compact('lists','listItems'));
 	}
 
 	/**
@@ -66,7 +68,10 @@ class ToDoListController extends Controller
 	public function createNewListItem(Request $request)
 	{
 		$user = Auth::user()->id;
-		$list = Lists::find($request->$id);
+		//DB::table('lists')->where('user_id', Auth::user()->id)
+		$list = DB::table('lists')->find($request->List_id);
+
+		//dd($user,$list);
 
 		if ($list == null || $user == null) {
 			return redirect(url('/yourLists'));
@@ -75,7 +80,8 @@ class ToDoListController extends Controller
 			DB::table('list_items')->insertOrIgnore([
 				"name" => $request->listItemName,
 				"description" => $request->description,
-				"List_id" => $request->$id
+				"List_id" => $request->List_id,
+				"user_id" => Auth::user()->id
 			]);
 			return redirect(url('/yourLists'));
 
