@@ -3,13 +3,12 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
 		@if (empty($lists[0]))
 			<p>you dont seem to have any lists yet</p>
 		@endif
-
+		
 		@foreach ($lists as $list)
-		<div class="col-md-3" style="border-style:solid; border-color:red;">
+		<div class="col-3" style="border-style:solid; border-color:red;">
 			<h2>{{$list->name}}</h2>
 			<a href="{{url('/')}}/newListItem/{{$list->id}}">New list item</a>
 			@foreach ($listItems as $listItem)
@@ -29,8 +28,8 @@
 		</div>
 		@endforeach
 		
-		<a class="nav-link" href="{{ url('/newList') }}">make a new list</a>
 		</div>
+		<a class="nav-link" href="{{ url('/newList') }}">make a new list</a>
 	</div>
 </div>
 
