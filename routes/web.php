@@ -31,4 +31,6 @@ Route::get('/newListItem/{id}', 'ToDoListController@newListItem')->middleware('a
 
 Route::post('/createNewListItem', 'ToDoListController@createNewListItem')->middleware('auth');
 
+Route::post('/yourList/update', 'ToDoListController@update');
+
 //Route::resource('/list', 'ToDoListController');

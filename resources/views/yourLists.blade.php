@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row">
 		@if (empty($lists[0]))
-			<p>you dont seem to have any lists yet</p>
+			<p>you don't seem to have any lists yet</p>
 		@endif
 		
 		@foreach ($lists as $list)
@@ -18,7 +18,7 @@
 				<p>{{$listItem->name}}</p>
 				<p>{{$listItem->description}}</p>
 				
-				<input type="checkbox" @if ($listItem->status == 1)
+				<input type="checkbox" id={{$listItem->id}} @if ($listItem->status == 1)
 				checked
 				@endif
 				><label for="status">DONE</label>
@@ -33,7 +33,4 @@
 	<a class="nav-link" href="{{ url('/newList') }}">make a new list</a>
 </div>
 
-<!--
-<script src="{{ asset('js/check.js') }}" defer></script>
--->
 @endsection
