@@ -20,6 +20,7 @@ class ToDoListController extends Controller
 		->get();
 		$listItems = DB::table('list_items')->where('user_id', Auth::user()->id)
 		->get();
+
 		return view('yourLists', compact('lists','listItems'));
 	}
 
@@ -91,25 +92,16 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Display the specified resource.
-	 *
-	 * @param  \App\ToDoList  $toDoList
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show(ToDoList $toDoList)
-	{
-		//
-	}
-
-	/**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  \App\ToDoList  $toDoList
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(ToDoList $toDoList)
+	public function editListItem($id)
 	{
-		//
+		$listItem = DB::table('list_items')->where('id', $id)
+		->get();
+		return view('editListItem', compact("listItem"));
 	}
 
 	/**
@@ -119,7 +111,7 @@ class ToDoListController extends Controller
 	 * @param  \App\ToDoList  $toDoList
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, ToDoList $toDoList)
+	public function updateStatus(Request $request)
 	{
 		$status;
 		if ($request->status === 'true') {
@@ -133,14 +125,21 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Update the specified resource in storage.
 	 *
+	 * @param  \Illuminate\Http\Request  $request
 	 * @param  \App\ToDoList  $toDoList
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroyList(ToDoList $toDoList)
+	public function updateListItem(Request $request)
 	{
-		DB::table('lists')->where()->delete();
+		
+		DB::table('list_items')
+			->where('id', $request->id)
+			->update([
+				"name" => $request->listItemName,
+				"description" => $request->description
+			]);
 	}
 
 	/**
@@ -149,7 +148,19 @@ class ToDoListController extends Controller
 	 * @param  \App\ToDoList  $toDoList
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroyListItem(ToDoList $toDoList)
+	public function destroyList(Request $request)
+	{
+		DB::table('lists')->where()->delete();
+		DB::table('list_items')->where()->delete();
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  \App\ToDoList  $toDoList
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroyListItem(Request $request)
 	{
 		DB::table('list_items')->where()->delete();
 	}

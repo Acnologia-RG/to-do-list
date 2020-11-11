@@ -8,9 +8,9 @@
 		@endif
 		
 		@foreach ($lists as $list)
-		<div class="col-3" style="border-style:solid; border-color:red;">
+		<div class="col" style="border-style:solid; border-color:red;">
 			<h2>{{$list->name}}</h2>
-			<a href="{{url('/')}}/newListItem/{{$list->id}}">New list item</a>
+			<a href="{{url('/')}}/newListItem/{{$list->id}}"><button class="btn btn-secondary">New list item</button></a><br><br>
 			
 			@foreach ($listItems as $listItem)
 			@if ($listItem->List_id == $list->id)
@@ -21,16 +21,20 @@
 				<input type="checkbox" id={{$listItem->id}} @if ($listItem->status == 1)
 				checked
 				@endif
-				><label for="status">DONE</label>
+				><label for="status">DONE</label><br>
 				
+				<a href="{{ url('/')}}/editListItem/{{$listItem->id}}"><button class="btn btn-secondary">Edit item</button></a>
+				<a href="{{ url('/')}}/deleteListItem/{{$listItem->id}}"><button class="btn btn-secondary">Delete item</button></a><br><br>
 				</div>
 			@endif
 			@endforeach
+			<br>
+			<a href="{{ url('/')}}/deleteList/{{$list->id}}"><button class="btn btn-secondary">Delete list</button></a><br><br>
 		</div>
 		@endforeach
 		
 	</div>
-	<a class="nav-link" href="{{ url('/newList') }}">make a new list</a>
+	<a class="nav-link" href="{{ url('/newList') }}"><button class="btn btn-secondary">make a new list</button></a><br><br>
 </div>
 
 @endsection
