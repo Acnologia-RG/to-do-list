@@ -10,7 +10,7 @@
 			@csrf
 			@method('POST')
 				<h5>List name</h5>
-				<input class="text" type="text" required name="listName"> <br>
+				<input class="text" type="text" required name="listName"> <br><br>
 				<input class="btn btn-secondary" type="submit" value="make new list">
 			</div>
 		@else

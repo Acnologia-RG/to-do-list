@@ -121,7 +121,15 @@ class ToDoListController extends Controller
 	 */
 	public function update(Request $request, ToDoList $toDoList)
 	{
-		
+		$status;
+		if ($request->status === 'true') {
+			$status = 1;
+		} elseif ($request->status === 'false') {
+			$status = 0;
+		}
+		DB::table('list_items')
+			->where('id', $request->id)
+			->update(['status' => $status]);
 	}
 
 	/**
@@ -130,8 +138,19 @@ class ToDoListController extends Controller
 	 * @param  \App\ToDoList  $toDoList
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(ToDoList $toDoList)
+	public function destroyList(ToDoList $toDoList)
 	{
-		//
+		DB::table('lists')->where()->delete();
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  \App\ToDoList  $toDoList
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroyListItem(ToDoList $toDoList)
+	{
+		DB::table('list_items')->where()->delete();
 	}
 }
