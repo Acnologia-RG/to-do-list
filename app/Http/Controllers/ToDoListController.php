@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class ToDoListController extends Controller
 {
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of all your lists with their items.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -35,7 +35,7 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created List in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
@@ -51,7 +51,7 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new List.
+	 * Show the form for creating a new listItem.
 	 *
 	 * @param  $id
 	 * @return \Illuminate\Http\Response
@@ -62,7 +62,7 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created ListItem in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
@@ -93,7 +93,7 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified ListItem.
 	 *
 	 * @param  $id
 	 * @return \Illuminate\Http\Response
@@ -107,7 +107,8 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified ListItem's status in storage.
+	 * gets called by an Ajax call only
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
@@ -126,7 +127,7 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified ListItem in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
@@ -143,7 +144,7 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified List and all its ListItems from storage.
 	 *
 	 * @param  $id
 	 * @return \Illuminate\Http\Response
@@ -157,7 +158,7 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified ListItem from storage.
 	 *
 	 * @param  $id
 	 * @return \Illuminate\Http\Response

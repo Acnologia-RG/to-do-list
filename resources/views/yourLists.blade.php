@@ -23,7 +23,7 @@
 				@endif
 				><label for="status">DONE</label><br>
 				
-				<a href="{{ url('/')}}/editListItem/{{$listItem->id}}"><button class="btn btn-secondary">Edit item</button></a>
+				<a style="margin-right:30px" href="{{ url('/')}}/editListItem/{{$listItem->id}}"><button class="btn btn-secondary">Edit item</button></a>
 				<a href="{{ url('/')}}/deleteListItem/{{$listItem->id}}"><button class="btn btn-secondary">Delete item</button></a><br><br>
 				</div>
 			@endif
