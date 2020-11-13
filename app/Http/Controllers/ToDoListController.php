@@ -53,6 +53,7 @@ class ToDoListController extends Controller
 	/**
 	 * Show the form for creating a new List.
 	 *
+	 * @param  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function newListItem($id)
@@ -94,7 +95,7 @@ class ToDoListController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\ToDoList  $toDoList
+	 * @param  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function editListItem($id)
@@ -109,7 +110,6 @@ class ToDoListController extends Controller
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\ToDoList  $toDoList
 	 * @return \Illuminate\Http\Response
 	 */
 	public function updateStatus(Request $request)
@@ -129,14 +129,12 @@ class ToDoListController extends Controller
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\ToDoList  $toDoList
 	 * @return \Illuminate\Http\Response
 	 */
 	public function updateListItem(Request $request)
 	{
-		
 		DB::table('list_items')
-			->where('id', $request->id)
+			->where('id', $request->List_id)
 			->update([
 				"name" => $request->listItemName,
 				"description" => $request->description
@@ -147,7 +145,7 @@ class ToDoListController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\ToDoList  $toDoList
+	 * @param  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroyList($id)
@@ -161,7 +159,7 @@ class ToDoListController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\ToDoList  $toDoList
+	 * @param  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroyListItem($id)
