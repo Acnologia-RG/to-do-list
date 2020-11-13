@@ -33,9 +33,9 @@ Route::post('/createNewListItem', 'ToDoListController@createNewListItem')->middl
 
 Route::post('/yourList/update', 'ToDoListController@updateStatus');
 
-Route::get('/deleteList/{id}', 'ToDoListController@deleteList')->middleware('auth');
+Route::get('/deleteList/{id}', 'ToDoListController@destroyList')->middleware('auth');
 
-Route::get('/deleteListItem/{id}', 'ToDoListController@deleteListItem')->middleware('auth');
+Route::get('/deleteListItem/{id}', 'ToDoListController@destroyListItem')->middleware('auth');
 
 Route::get('/editListItem/{id}', 'ToDoListController@editListItem')->middleware('auth');
 

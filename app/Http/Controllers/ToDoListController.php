@@ -101,6 +101,7 @@ class ToDoListController extends Controller
 	{
 		$listItem = DB::table('list_items')->where('id', $id)
 		->get();
+
 		return view('editListItem', compact("listItem"));
 	}
 
@@ -140,6 +141,7 @@ class ToDoListController extends Controller
 				"name" => $request->listItemName,
 				"description" => $request->description
 			]);
+		return redirect(url('/yourLists'));
 	}
 
 	/**
@@ -148,10 +150,12 @@ class ToDoListController extends Controller
 	 * @param  \App\ToDoList  $toDoList
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroyList(Request $request)
+	public function destroyList($id)
 	{
-		DB::table('lists')->where()->delete();
-		DB::table('list_items')->where()->delete();
+		DB::table('list_items')->where('list_id', $id)->delete();
+		DB::table('lists')->where('id', $id)->delete();
+		
+		return redirect(url('/yourLists'));
 	}
 
 	/**
@@ -160,8 +164,10 @@ class ToDoListController extends Controller
 	 * @param  \App\ToDoList  $toDoList
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroyListItem(Request $request)
+	public function destroyListItem($id)
 	{
-		DB::table('list_items')->where()->delete();
+		DB::table('list_items')->where('id', $id)->delete();
+		
+		return redirect(url('/yourLists'));
 	}
 }
