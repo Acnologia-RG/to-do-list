@@ -35,9 +35,9 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Store a newly created List in storage.
+	 * Store a newly created List in the database.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function createNewList(Request $request)
@@ -64,15 +64,15 @@ class ToDoListController extends Controller
 	/**
 	 * Store a newly created ListItem in storage.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function createNewListItem(Request $request)
 	{
 		$user = Auth::user()->id;
 		//DB::table('lists')->where('user_id', Auth::user()->id)
-		$list = DB::table('lists')->find($request->List_id);
 
+		$list = DB::table('lists')->find($request->List_id);
 		//dd($user,$list);
 
 		if ($list == null || $user == null) {
@@ -107,10 +107,10 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Update the specified ListItem's status in storage.
+	 * Update the specified ListItem's status in the database.
 	 * gets called by an Ajax call only
 	 *
-	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function updateStatus(Request $request)
@@ -127,9 +127,9 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Update the specified ListItem in storage.
+	 * Update the specified ListItem in the database.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function updateListItem(Request $request)
@@ -144,7 +144,7 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Remove the specified List and all its ListItems from storage.
+	 * Remove the specified List and all its ListItems from the database.
 	 *
 	 * @param  $id
 	 * @return \Illuminate\Http\Response
@@ -158,7 +158,7 @@ class ToDoListController extends Controller
 	}
 
 	/**
-	 * Remove the specified ListItem from storage.
+	 * Remove the specified ListItem from the database.
 	 *
 	 * @param  $id
 	 * @return \Illuminate\Http\Response

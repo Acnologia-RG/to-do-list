@@ -40,3 +40,5 @@ Route::get('/deleteListItem/{id}', 'ToDoListController@destroyListItem')->middle
 Route::get('/editListItem/{id}', 'ToDoListController@editListItem')->middleware('auth');
 
 Route::post('/updateListItem', 'ToDoListController@updateListItem');
+// im kinda cheating on this last one as its done in the wrong way
+// but i could not get the other way working as it should

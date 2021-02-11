@@ -11,8 +11,8 @@ console.log(status);
 			id: id,
 			status: status
 		},
-		success: function () {
-			console.log("eat a dick Sir Froggo")
-		}
+		// success: function () {
+		// 	console.log("it works")
+		// }
 	});
 });
