@@ -93,6 +93,21 @@ class ToDoListController extends Controller
 	}
 
 	/**
+	 * Show the form for editing the specified List.
+	 *
+	 * @param  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function editList($id)
+	{
+		$edit = "list";
+		$list = DB::table('lists')->where('id', $id)
+		->get();
+
+		return view('edit', compact("list", "edit"));
+	}
+
+	/**
 	 * Show the form for editing the specified ListItem.
 	 *
 	 * @param  $id
@@ -100,10 +115,11 @@ class ToDoListController extends Controller
 	 */
 	public function editListItem($id)
 	{
+		$edit = "item";
 		$listItem = DB::table('list_items')->where('id', $id)
 		->get();
 
-		return view('editListItem', compact("listItem"));
+		return view('edit', compact("listItem", "edit"));
 	}
 
 	/**
@@ -139,6 +155,22 @@ class ToDoListController extends Controller
 			->update([
 				"name" => $request->listItemName,
 				"description" => $request->description
+			]);
+		return redirect(url('/yourLists'));
+	}
+
+	/**
+	 * Update the specified ListItem in the database.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function updateList(Request $request)
+	{
+		DB::table('lists')
+			->where('id', $request->List_id)
+			->update([
+				"name" => $request->listItemName
 			]);
 		return redirect(url('/yourLists'));
 	}

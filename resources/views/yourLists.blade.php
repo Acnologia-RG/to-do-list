@@ -10,6 +10,7 @@
 		@foreach ($lists as $list)
 		<div class="col" style="border-style:solid; border-color:red;">
 			<h2>{{$list->name}}</h2>
+			<a href="{{url('/')}}/editList/{{$list->id}}"><button class="btn btn-secondary">edit list name</button>
 			<a href="{{url('/')}}/newListItem/{{$list->id}}"><button class="btn btn-secondary">New list item</button></a><br><br>
 			
 			@foreach ($listItems as $listItem)
