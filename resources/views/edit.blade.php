@@ -13,7 +13,7 @@
 				@method('POST')
 					<h4>item name</h4>
 					<input class="text" type="text" value="{{$list[0]->name}}" required name="listName"><br><br>
-					<br><br>
+					<input type="hidden" type="number" name="List_id" value="{{$list[0]->id}}"><br><br>
 					<input class="btn btn-secondary" type="submit" value="update list">
 				</div>
 

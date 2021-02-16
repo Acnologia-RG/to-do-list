@@ -170,7 +170,7 @@ class ToDoListController extends Controller
 		DB::table('lists')
 			->where('id', $request->List_id)
 			->update([
-				"name" => $request->listItemName
+				"name" => $request->listName
 			]);
 		return redirect(url('/yourLists'));
 	}
